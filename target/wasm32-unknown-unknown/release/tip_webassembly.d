@@ -1,0 +1,1 @@
+C:\Users\caval\Documents\my_projects\Tip-Calculator\tip-webassembly\target\wasm32-unknown-unknown\release\tip_webassembly.wasm: C:\Users\caval\Documents\my_projects\Tip-Calculator\tip-webassembly\src\lib.rs

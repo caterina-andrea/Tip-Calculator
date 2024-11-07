@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Tip Calculator</title>
+	<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+	<h1>Tip Calculator</h1>
+	<label for="subtotal">Subtotal</label>
+	<input type="number" id="subtotal" name="subtotal" min="0">
+	<button id="calculateButton">Calculate Tip</button>
+	<p id="result"></p>
+	<script type="module">
+		// Import the calculate_tip function and the WebAssembly module
+		import init, {calculate_tip} from "./pkg/tip_webassembly.js"
+
+		// Function to initialize the module
+		async function run() {
+			// Wait for the WebAssembly module to be initialized
+			await init();
+			
+			// Function to calculate tip when the calculateButton is clicked
+			function calculateTip(){
+				const subtotal = paseFloat(document.getElementById("subtotal").value);
+				const tip = calculate_tip(subtotal);
+				document.getElementById("result").innerText = 'Tip:$${tip.toFixed(2)}';
+			}
+			
+			// Link the calculateTip() to the calculateButton
+			document.getElementById("calculateButton").addEventListener("click", calculateTip);
+		}
+
+		run();
+	</script>
+</body>
+</html>
